@@ -16,7 +16,7 @@ export const useStyles = makeStyles((theme) => ({
         })
     },
     toggleDesktopMenuBtn: {
-        width: '50px',
+        width: '45px',
         marginRight: '3%',
         backgroundColor: '#041124',
         fontSize: '2.5rem',
@@ -70,14 +70,14 @@ export const useStyles = makeStyles((theme) => ({
     },
     drawerOpen: {
         width: drawerWidth,
-        backgroundColor: '#0f4163',
+        backgroundColor: '#0b1120',
         transition: theme.transitions.create('width', {
             easing: theme.transitions.easing.easeIn,
             duration: theme.transitions.duration.enteringScreen,
         }),
     },
     drawerClose: {
-        backgroundColor: '#0f4163',
+        backgroundColor: '#0b1120',
         transition: theme.transitions.create('width', {
             easing: theme.transitions.easing.sharp,
             duration: theme.transitions.duration.leavingScreen,

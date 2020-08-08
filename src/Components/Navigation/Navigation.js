@@ -8,6 +8,7 @@ import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 import MenuList from '@material-ui/core/MenuList';
 import Typography from '@material-ui/core/Typography';
+import Divider from '@material-ui/core/Divider';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import HomeIcon from '@material-ui/icons/Home';
 import ListItemText from '@material-ui/core/ListItemText';
@@ -19,6 +20,8 @@ import { Link, useLocation } from "react-router-dom";
 import { useStyles } from './NavigationStyling'
 import { MenuItem } from '@material-ui/core';
 import logo from './../../Assets/Images/logo.png';
+import menuIcon from './../../Assets/Images/menu_icon.png';
+
 
 
 export default function Navigation(props) {
@@ -27,7 +30,7 @@ export default function Navigation(props) {
     const websiteTitle = "AZ MOVIE NIGHTS"
     const classes = useStyles();
     let pathname = useLocation().pathname;
-    const [open, setDeskDrawOpen] = React.useState(true);
+    const [open, setDeskDrawOpen] = React.useState(false);
     const [mobileDrawerState, setmobileDrawerState] = React.useState(false);
 
 
@@ -51,7 +54,7 @@ export default function Navigation(props) {
         return (
             <Fragment>
                 {/* Additional Color ''#04122c' */}
-                <MenuList key={key} style={{ backgroundColor: '#041326', color: '#ffc273', paddingLeft: '3px' }} >
+                <MenuList key={key} style={{ backgroundColor: '#06163A', color: '#fee2be', paddingLeft: '3px' }} >
 
 
                     <MenuItem component={Link} to="/" selected={'/' === pathname} style={{ marginTop: "40px", paddingBottom: '11px' }}>
@@ -61,12 +64,14 @@ export default function Navigation(props) {
                             marginBottom: '1rem',
                             position: 'absolute',
                             bottom: '-18px',
-                            fontSize: '9px'
+                            fontSize: '9px',
+                            display: (open) ? "none" : "unset"
                         }}>HOME</p>
                     </MenuItem>
+                    <Divider />
 
 
-                    <MenuItem component={Link} to="/productList" selected={'/productList' === pathname} style={{paddingBottom: '11px'}}>
+                    <MenuItem component={Link} to="/productList" selected={'/productList' === pathname} style={{ paddingBottom: '11px' }}>
                         <ListItemIcon>
                             <ShopIcon className={classes.ShopIcon} />
                         </ListItemIcon>
@@ -79,12 +84,13 @@ export default function Navigation(props) {
                             fontSize: '9px'
                         }}>PRODUCTS</p>
                     </MenuItem>
-
+                    <Divider />
 
                     <MenuItem component={Link} to="/wishList" selected={'/wishList' === pathname}>
                         <ListItemIcon><FavoriteIcon className={classes.FavoriteIcon} /></ListItemIcon>
                         <ListItemText primary="WISH LIST" />
                     </MenuItem>
+                    <Divider />
 
 
                     <MenuItem component={Link} to="/faqPage" selected={'/faqPage' === pathname}>
@@ -98,6 +104,7 @@ export default function Navigation(props) {
                         <ListItemIcon><ListAltIcon className={classes.ListAltIcon2} /></ListItemIcon>
                         <ListItemText primary="RESERVATIONS" />
                     </MenuItem>
+                    <Divider />
 
 
                     <MenuItem onClick={() => handleClose()}>
@@ -105,6 +112,7 @@ export default function Navigation(props) {
                             <SwapHorizontalCircleIcon className={classes.SwapHorizontalCircleIcon} /></ListItemIcon>
                         <ListItemText primary="CLOSE" />
                     </MenuItem>
+                    <Divider />
 
                 </MenuList>
             </Fragment>
@@ -115,9 +123,9 @@ export default function Navigation(props) {
     return (
         <div className={classes.root}>
             <CssBaseline />
-            <AppBar position="fixed" style={{ backgroundColor: '#0f4163' }} >
-                <Toolbar style={{ height: '110px' }}>
-                    <IconButton
+            <AppBar position="fixed" style={{ backgroundColor: '#0b1120' }} >
+                <Toolbar style={{ height: '110px', borderBottom: '10px solid red' }}>
+                    {/* <IconButton
                         className={classes.toggleDesktopMenuBtn}
                         color="inherit"
                         aria-label="open drawer"
@@ -125,7 +133,15 @@ export default function Navigation(props) {
                         edge="start"
                     >
                         <MenuIcon />
-                    </IconButton>
+                    </IconButton>  */}
+
+                    <img src={menuIcon} style={{
+                        width: '40px',
+                        height: '40px',
+                        margin: '0 30px 0 -8px',
+                    }} />
+
+
                     <IconButton
                         className={classes.toggleMobileMenuBtn}
                         color="inherit"
@@ -135,7 +151,7 @@ export default function Navigation(props) {
                     >
                         <MenuIcon />
                     </IconButton>
-                    <Typography variant="h6" noWrap style={{ color: 'white' }}>
+                    <Typography variant="h6" noWrap style={{ color: '#fee2be' }}>
                         {websiteTitle}
                     </Typography>
                     <img src={logo} style={{ marginLeft: "77%" }} alt="company logo" />
@@ -160,13 +176,16 @@ export default function Navigation(props) {
             </Drawer>
 
             {/* Mobile drawer */}
+
             <Drawer
                 key="mobileDrawer"
                 anchor="left"
                 open={mobileDrawerState}
                 onClose={() => handleMobileDrawerToggle(false)}>
                 <Toolbar>
-                    {websiteTitle}
+                    <Typography variant="h6" noWrap style={{ color: '#fee2be' }}>
+                        {websiteTitle}
+                    </Typography>
                 </Toolbar>
                 {renderNavItems("desktopNav")}
             </Drawer>
